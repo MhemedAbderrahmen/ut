@@ -32,7 +32,7 @@ go build -o ut .
 ```
 
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Configure Your API Key
 
@@ -58,7 +58,7 @@ ut list
 ut fetch your-file-key.pdf
 ```
 
-## 📖 Usage
+## Usage
 
 ### Configuration
 
@@ -147,7 +147,7 @@ The CLI stores configuration in `~/.ut-cli/config.yml` by default. You can custo
 #### `ut list` options:
 - `-v, --verbose`: Show detailed file information
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
 
@@ -169,11 +169,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/MhemedAbderrahmen/ut/issues)
-- 💡 **Feature Requests**: [GitHub Discussions](https://github.com/MhemedAbderrahmen/ut/discussions)
-- 📖 **Documentation**: [Wiki](https://github.com/MhemedAbderrahmen/ut/wiki)
+-  **Bug Reports**: [GitHub Issues](https://github.com/MhemedAbderrahmen/ut/issues)
+-  **Feature Requests**: [GitHub Discussions](https://github.com/MhemedAbderrahmen/ut/discussions)
+-  **Documentation**: [Wiki](https://github.com/MhemedAbderrahmen/ut/wiki)
 
-## 🔗 Links
+## Links
 - [UploadThing Documentation](https://docs.uploadthing.com) [UploadThing Dashboard](https://uploadthing.com/dashboard)
 - [API Reference](https://docs.uploadthing.com/api-reference)
 
