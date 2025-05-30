@@ -31,11 +31,6 @@ cd uploadthing-cli
 go build -o ut .
 ```
 
-### Using Go Install
-
-```bash
-go install github.com/yourusername/ut@latest
-```
 
 ## 🚀 Quick Start
 
