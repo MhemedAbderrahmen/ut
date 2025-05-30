@@ -26,7 +26,7 @@ A powerful command-line interface for [UploadThing](https://uploadthing.com), en
 ### From Source
 
 ```bash
-git clone https://github.com/yourusername/uploadthing-cli.git
+git clone https://github.com/username/ut.git
 cd uploadthing-cli
 go build -o ut .
 ```
@@ -34,7 +34,7 @@ go build -o ut .
 ### Using Go Install
 
 ```bash
-go install github.com/yourusername/uploadthing-cli@latest
+go install github.com/yourusername/ut@latest
 ```
 
 ## 🚀 Quick Start
@@ -159,7 +159,7 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 ### Development Setup
 
 1. Fork the repository
-2. Clone your fork: `git clone https://github.com/yourusername/uploadthing-cli.git`
+2. Clone your fork: `git clone https://github.com/yourusername/ut.git`
 3. Create a feature branch: `git checkout -b feature/amazing-feature`
 4. Make your changes
 5. Commit your changes: `git commit -m 'Add amazing feature'`
