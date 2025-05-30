@@ -1,4 +1,4 @@
-module ut
+module github.com/MhemedAbderrahmen/ut
 
 go 1.24.3
 
