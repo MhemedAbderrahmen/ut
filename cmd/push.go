@@ -17,18 +17,23 @@ import (
 )
 
 var uploadCmd = &cobra.Command{
-	Use:   "push <filepath>",
-	Short: "Push a file to UploadThing",
-	Long:  `Push a file to UploadThing using your secret API key configured.`,
-	Args:  cobra.ExactArgs(1),
+	Use:   "push <filepath> [filepath2] [filepath3]...",
+	Short: "Push one or more files to UploadThing",
+	Long:  `Push one or more files to UploadThing using your secret API key configured.`,
+	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		filePath := args[0]
-		err := uploadFile(filePath)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "Error uploading file: %v\n", err)
-			os.Exit(1)
+		for i, filePath := range args {
+			fmt.Printf("[%d/%d] Uploading %s...\n", i+1, len(args), filepath.Base(filePath))
+			err := uploadFile(filePath)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "Error uploading file %s: %v\n", filePath, err)
+				os.Exit(1)
+			}
+			fmt.Printf("[%d/%d] ✓ %s uploaded successfully!\n", i+1, len(args), filepath.Base(filePath))
 		}
-		fmt.Println("File uploaded successfully!")
+		if len(args) > 1 {
+			fmt.Printf("All %d files uploaded successfully!\n", len(args))
+		}
 	},
 }
 
