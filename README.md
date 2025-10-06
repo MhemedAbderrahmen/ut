@@ -40,10 +40,14 @@ go build -o ut .
 ut config
 ```
 
-### 2. Upload a File
+### 2. Upload Files
 
 ```bash
+# Single file
 ut push document.pdf
+
+# Multiple files
+ut push image1.png image2.png document.pdf
 ```
 
 ### 3. List Your Files
@@ -75,14 +79,20 @@ ut config show
 
 ### File Upload
 
-Upload files to UploadThing:
+Upload single or multiple files to UploadThing:
 
 ```bash
-# Basic upload
+# Single file upload
 ut push image.jpg
 
-# Upload with progress tracking (automatic for large files)
-ut push large-video.mp4
+# Multiple file upload
+ut push image1.png image2.png document.pdf
+
+# Upload multiple files with wildcards
+ut push *.jpg *.png
+
+# Mixed file types
+ut push photo.jpg data.csv report.pdf
 ```
 
 **Supported file types:** Images (JPG, PNG, GIF), Documents (PDF, TXT, JSON, XML, CSV), and more.
@@ -132,7 +142,7 @@ The CLI stores configuration in `~/.ut-cli/config.yml` by default. You can custo
 | Command | Description | Example |
 |---------|-------------|---------|
 | `ut config` | Set your UploadThing secret key | `ut config` |
-| `ut push <file>` | Upload a file to UploadThing | `ut push document.pdf` |
+| `ut push <file> [file2]...` | Upload one or more files to UploadThing | `ut push document.pdf image.png` |
 | `ut fetch <filekey>` | Download a file by file key | `ut fetch abc123-file.jpg` |
 | `ut list` | List all uploaded files | `ut list` |
 
