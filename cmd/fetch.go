@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -24,6 +25,10 @@ var (
 	isPrivate      bool
 )
 
+var (
+	ErrAPIKeyInvalid = errors.New("invalid api key")
+)
+
 var downloadCmd = &cobra.Command{
 	Use:   "fetch <fileKey>",
 	Short: "Download a file from UploadThing",
@@ -40,7 +45,14 @@ Examples:
 		fileKey := args[0]
 		err := runDownload(fileKey)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "Error downloading file: %v\n", err)
+			if errors.Is(err, config.ErrConfigNotFound) {
+				fmt.Fprintln(os.Stderr, `API key is not configured.
+Run 'ut config set-secret' before downloading private files.`)
+			} else if errors.Is(err, ErrAPIKeyInvalid) {
+				fmt.Fprintln(os.Stderr, "Invalid API key. Run 'ut config set-secret' to update it.")
+			} else {
+				fmt.Fprintf(os.Stderr, "Error downloading file: %v\n", err)
+			}
 			os.Exit(1)
 		}
 		fmt.Println("File downloaded successfully!")
@@ -151,6 +163,9 @@ func getSignedURL(fileKey string) (string, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
+		if resp.StatusCode == http.StatusUnauthorized {
+			return "", ErrAPIKeyInvalid
+		}
 		body, _ := io.ReadAll(resp.Body)
 		return "", fmt.Errorf("API request failed: status %d, response: %s", resp.StatusCode, string(body))
 	}
