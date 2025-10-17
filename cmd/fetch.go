@@ -26,7 +26,7 @@ var (
 )
 
 var (
-	ErrAPIKeyInvalid = errors.New("invalid api key")
+	ErrAPIKeyInvalid = errors.New("invalid API key")
 )
 
 var downloadCmd = &cobra.Command{
@@ -163,8 +163,8 @@ func getSignedURL(fileKey string) (string, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		if resp.StatusCode == http.StatusUnauthorized {
-			return "", ErrAPIKeyInvalid
+		if resp.StatusCode == http.StatusUnauthorized || resp.StatusCode == http.StatusForbidden {
+			return "", fmt.Errorf("request unauthorized: %w", ErrAPIKeyInvalid)
 		}
 		body, _ := io.ReadAll(resp.Body)
 		return "", fmt.Errorf("API request failed: status %d, response: %s", resp.StatusCode, string(body))
